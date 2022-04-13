@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homePage');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/pendaftar', function () {
+    return view('pendaftar');
+})->name('pendaftar');
+
+Route::get('/pembayaran', function () {
+    return view('pembayaran');
+})->name('pembayaran');
+
+Route::get('/pendaftar-diterima', function () {
+    return view('pendaftar_diterima');
+})->name('pendaftar_diterima');
