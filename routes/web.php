@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PendaftarController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PendaftarDiterimaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +19,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/pendaftar', function () {
-    return view('pendaftar');
-})->name('pendaftar');
-
-Route::get('/pembayaran', function () {
-    return view('pembayaran');
-})->name('pembayaran');
-
-Route::get('/pendaftar-diterima', function () {
-    return view('pendaftar_diterima');
-})->name('pendaftar_diterima');
+Route::resource('pendaftar', PendaftarController::class);
+Route::resource('pembayaran', PembayaranController::class);
+Route::resource('pendaftar-diterima', PendaftarDiterimaController::class);

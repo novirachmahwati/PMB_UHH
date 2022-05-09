@@ -48,19 +48,19 @@
             </li>
 
             <li class="nav-item @yield('pendaftar_active')">
-              <a class="nav-link" href="{{ route('pendaftar') }}">
+              <a class="nav-link" href="{{ route('pendaftar.index') }}">
                   <i class="fas fa-fw fa-users"></i>
                   <span>Data Pendaftar</span></a>
             </li>
 
             <li class="nav-item @yield('pembayaran_active')">
-              <a class="nav-link" href="{{ route('pembayaran') }}">
+              <a class="nav-link" href="{{ route('pembayaran.index') }}">
                   <i class="fas fa-fw fa fa-credit-card"></i>
                   <span>Pembayaran</span></a>
             </li>
 
             <li class="nav-item @yield('pendaftar_diterima_active')">
-              <a class="nav-link" href="{{ route('pendaftar_diterima') }}">
+              <a class="nav-link" href="{{ route('pendaftar-diterima.index') }}">
                   <i class="fas fa-fw fa-users"></i>
                   <span>Pendaftar Diterima</span></a>
             </li>
@@ -217,9 +217,6 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         @yield('pageHeading')
-                        {{-- <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> --}}
-                        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
                     </div>
 
                     @yield('content')
@@ -281,6 +278,9 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('style/js/sb-admin-2.min.js') }}"></script>
 
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script> --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @yield('customScripts')
     
 </body>
