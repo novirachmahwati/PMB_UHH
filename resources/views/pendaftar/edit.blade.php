@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'Data Pendaftar')
-@section('pembayaran_active', 'active')
+@section('pendaftar_active', 'active')
 
 @section('pageHeading')
-<h1 class="h3 mb-0 text-gray-800">Data Pembayaran</h1>
+<h1 class="h3 mb-0 text-gray-800">Data Pendaftar</h1>
 @endsection
 
 @section('content')
