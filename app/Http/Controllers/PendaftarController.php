@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Custom\BaseUrl;
+use GuzzleHttp\Client;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PendaftarController extends Controller
@@ -16,9 +16,12 @@ class PendaftarController extends Controller
      */
     public function index()
     {
-        $response = BaseUrl::get('/posts');
-        
-        return view('pendaftar.index');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi');
+        $pendaftar = json_decode($res->getBody()->getContents(), true);
+        return view('pendaftar.index', compact('pendaftar'));
     }
 
     /**
@@ -50,7 +53,14 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        return view('pendaftar.show');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi', [
+            'query' => ['id' => $id]
+        ]);
+        $pendaftar = json_decode($res->getBody()->getContents(), true);
+        return view('pendaftar.show', compact('pendaftar'));
     }
 
     /**

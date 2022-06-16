@@ -14,7 +14,8 @@
         <div class="card-body">
             <h4 class="h4 mb-0 text-gray-800">Detail Data Pribadi</h4>
             <br>
-            <a href="{{ route('pendaftar.edit', 22811020001) }}">Verifikasi Data</a>
+            @foreach ($pendaftar['data'] as $value)
+            <a href="{{ route('pendaftar.edit', $value['id_reg']) }}">Verifikasi Data</a>
             <div class="table-responsive">
                 <table class="table" width="100%" cellspacing="0">
                     <tr>
@@ -27,64 +28,61 @@
                     </tr>
                     <tr>
                         <td>No. Pendaftaran</td>
-                        <td class="text-right">22811020001</td>
+                        <td class="text-right">{{ $value['id_reg'] }}</td>
                         
                     </tr>
                     <tr>
                         <td>Nama Lengkap</td>
-                        <td class="text-right">Ismail Farqoni Fajarullah</td>
+                        <td class="text-right">{{ $value['nama'] }}</td>
                     </tr>
                     <tr>
                         <td>Tempat Tanggal Lahir</td>
-                        <td class="text-right">Yogyakarta, 5 Mei 2000</td>
+                        <td class="text-right">{{ $value['ttl'] }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td class="text-right">ismail_farqoni@gmail.com</td>
+                        <td class="text-right">{{ $value['email'] }}</td>
                     </tr>
                     <tr>
                         <td>Jenis Kelamin</td>
-                        <td class="text-right">Laki-Laki</td>
+                        <td class="text-right">{{ $value['jenis_kel'] }}</td>
                     </tr>
                     
                     <tr>
                         <td>Agama</td>
-                        <td class="text-right">Islam</td>
+                        <td class="text-right">{{ $value['agama'] }}</td>
                     </tr>
                     <tr>
                         <td>Nomor HP/WA</td>
-                        <td class="text-right">081240410873</td>
+                        <td class="text-right">{{ $value['no_hp'] }}</td>
                     </tr>
                     <tr>
                         <td>Alamat</td>
-                        <td class="text-right">Dusun Babakan RT 09 RW 02 Desa Parigi, Kec Parigi, Kab Pangandaran</td>
+                        <td class="text-right">{{ $value['alamat'] }}</td>
                     </tr>
                     <tr>
                         <td>Asal Sekolah</td>
-                        <td class="text-right">SMKN 1 Pangandaran</td>
+                        <td class="text-right">{{ $value['asal_sekolah'] }}</td>
                     </tr>
                     <tr>
                         <td>Jurusan Sekolah</td>
-                        <td class="text-right">Komputer dan Jaringan</td>
+                        <td class="text-right">{{ $value['jurusan_sekolah'] }}</td>
                     </tr>
                     <tr>
                         <td>NISN</td>
-                        <td class="text-right">0001452534</td>
+                        <td class="text-right">{{ $value['nisn'] }}</td>
                     </tr>
                     <tr>
                         <td>Jurusan Kuliah yang Dipilih</td>
-                        <td class="text-right">S1 - Sistem Informasi</td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Pendaftaran</td>
-                        <td class="text-right">2022-5-5 15:33:40</td>
+                        <td class="text-right">{{ $value['prodi'] }}</td>
                     </tr>
                     <tr>
                         <td>Status Pendaftaran</td>
-                        <td class="text-right">Belum Diverifikasi</td>
+                        <td class="text-right">{{ $value['status_daftar'] }}</td>
                     </tr>
                 </table>
             </div>
+            @endforeach
         </div>
     </div>
     <div class="card shadow mb-4">
@@ -95,28 +93,24 @@
                 <table class="table" width="100%" cellspacing="0">
                     <tr>
                         <td>Nama Ayah</td>
-                        <td class="text-right">Harun Rasyid</td>
+                        <td class="text-right">{{ $value['nama_ayah'] }}</td>
                         
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td class="text-right">Masih Ada</td>
-                    </tr>
-                    <tr>
-                        <td>Pendidikan Terakhir</td>
-                        <td class="text-right">S1</td>
+                        <td class="text-right">{{ $value['status_ortu'] }}</td>
                     </tr>
                     <tr>
                         <td>Pekerjaan</td>
-                        <td class="text-right">Wiraswasta</td>
+                        <td class="text-right">{{ $value['pekerjaan'] }}</td>
                     </tr>
                     <tr>
                         <td>Penghasilan</td>
-                        <td class="text-right">5jt-10jt</td>
+                        <td class="text-right">{{ $value['penghasilan'] }}</td>
                     </tr>
                     <tr>
                         <td>Nomor HP/WA</td>
-                        <td class="text-right">081234090822</td>
+                        <td class="text-right">{{ $value['no_hp_ortu'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -130,12 +124,12 @@
                 <table class="table" width="100%" cellspacing="0">
                     <tr>
                         <td>Nilai Ijazah</td>
-                        <td class="text-right">83.6</td>
+                        <td class="text-right">{{ $value['nilai_ijazah'] }}</td>
                         
                     </tr>
                     <tr>
                         <td>Nilai Transkrip</td>
-                        <td class="text-right">85.2</td>
+                        <td class="text-right">{{ $value['nilai_transkip'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -149,7 +143,7 @@
                 <table class="table" width="100%" cellspacing="0">
                     <tr>
                         <td>Kode Referensi</td>
-                        <td class="text-right">208096</td>
+                        <td class="text-right">{{ $value['status_daftar'] }}</td>
                         
                     </tr>
                     <tr>
@@ -158,11 +152,11 @@
                     </tr>
                     <tr>
                         <td>Tanggal Pembayaran</td>
-                        <td class="text-right">2022-5-5 20:40:00</td>
+                        <td class="text-right">{{ $value['status_daftar'] }}</td>
                     </tr>
                     <tr>
                         <td>Status Pembayaran</td>
-                        <td class="text-right">Belum Diverifikasi</td>
+                        <td class="text-right">{{ $value['status_daftar'] }}</td>
                     </tr>
                 </table>
             </div>
