@@ -142,21 +142,16 @@
             <div class="table-responsive">
                 <table class="table" width="100%" cellspacing="0">
                     <tr>
-                        <td>Kode Referensi</td>
-                        <td class="text-right">{{ $value['status_daftar'] }}</td>
-                        
-                    </tr>
-                    <tr>
                         <td width="50%">Bukti Transfer</td>
                         <td><img class="border float-right" width="40%" src="{{ asset('style/img/bukti_tf.jpg') }}"></td>
                     </tr>
                     <tr>
                         <td>Tanggal Pembayaran</td>
-                        <td class="text-right">{{ $value['status_daftar'] }}</td>
+                        <td class="text-right">{{ $value['tgl_bayar'] }}</td>
                     </tr>
                     <tr>
                         <td>Status Pembayaran</td>
-                        <td class="text-right">{{ $value['status_daftar'] }}</td>
+                        <td class="text-right">{{ $value['status_bayar'] }}</td>
                     </tr>
                 </table>
             </div>

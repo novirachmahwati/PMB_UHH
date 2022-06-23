@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Custom\BaseUrl;
+use GuzzleHttp\Client;
 
 class PembayaranController extends Controller
 {
@@ -14,9 +14,12 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $response = BaseUrl::get('/posts');
-        
-        return view('pembayaran.index');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi');
+        $pembayaran = json_decode($res->getBody()->getContents(), true);
+        return view('pembayaran.index', compact('pembayaran'));
     }
 
     /**
@@ -48,7 +51,14 @@ class PembayaranController extends Controller
      */
     public function show($id)
     {
-        return view('pembayaran.show');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi', [
+            'query' => ['id' => $id]
+        ]);
+        $pembayaran = json_decode($res->getBody()->getContents(), true);
+        return view('pembayaran.show', compact('pembayaran'));
     }
 
     /**
@@ -59,7 +69,14 @@ class PembayaranController extends Controller
      */
     public function edit($id)
     {
-        return view('pembayaran.edit');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi', [
+            'query' => ['id' => $id]
+        ]);
+        $pembayaran = json_decode($res->getBody()->getContents(), true);
+        return view('pembayaran.edit', compact('pembayaran'));
     }
 
     /**
@@ -71,7 +88,15 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('PUT', 'administrasi/verify', [
+            'query' => ['id_user' => $id],
+            'json'  => ['status_bayar' => $request->status_bayar]
+        ]);
+        return redirect()->route('pembayaran.index')
+        ->with('message', 'Status Pembayaran berhasil diubah!');
     }
 
     /**

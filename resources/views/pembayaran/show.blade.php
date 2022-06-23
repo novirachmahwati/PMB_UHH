@@ -14,30 +14,22 @@
         <div class="card-body">
             <h4 class="h4 mb-0 text-gray-800">Detail Pembayaran</h4>
             <br>
-            <a href="{{ route('pembayaran.edit', 22811020001) }}">Verifikasi Data</a>
+            @foreach ($pembayaran['data'] as $value)
+            <a href="{{ route('pembayaran.edit', $value['id_reg']) }}">Verifikasi Data</a>
             <div class="table-responsive">
                 <table class="table" width="100%" cellspacing="0">
-                    {{-- <tr>
-                        <td><a href="{{ route('pembayaran.edit', 22811020001) }}">Verifikasi Data</a></td>
-                        <td></td>
-                    </tr> --}}
                     <tr>
                         <td>No. Pendaftaran</td>
-                        <td class="text-right">22811020001</td>
+                        <td class="text-right">{{ $value['id_reg'] }}</td>
                         
                     </tr>
                     <tr>
                         <td>Nama</td>
-                        <td class="text-right">Ismail Farqoni Fajarullah</td>
+                        <td class="text-right">{{ $value['nama'] }}</td>
                     </tr>
                     <tr>
                         <td>No. Virtual Account</td>
                         <td class="text-right">9881041219610220</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Kode Referensi</td>
-                        <td class="text-right">208096</td>
                         
                     </tr>
                     <tr>
@@ -46,14 +38,15 @@
                     </tr>
                     <tr>
                         <td>Tanggal Pembayaran</td>
-                        <td class="text-right">2022-5-5 20:40:00</td>
+                        <td class="text-right">{{ $value['tgl_bayar'] }}</td>
                     </tr>
                     <tr>
                         <td>Status Pembayaran</td>
-                        <td class="text-right">Belum Diverifikasi</td>
+                        <td class="text-right">{{ $value['status_bayar'] }}</td>
                     </tr>
                 </table>
             </div>
+            @endforeach
         </div>
     </div>             
 @endsection

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Custom\BaseUrl;
+use GuzzleHttp\Client;
 
 class PendaftarDiterimaController extends Controller
 {
@@ -14,9 +14,23 @@ class PendaftarDiterimaController extends Controller
      */
     public function index()
     {
-        $response = BaseUrl::get('/posts');
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('GET', 'registrasi', [
+            'query' => ['status' => 'Diterima']
+        ]);
         
-        return view('pendaftar-diterima.index');
+        $pendaftar_diterima = json_decode($res->getBody()->getContents(), true);
+        $status = $pendaftar_diterima['status_code'];
+        
+        if ($status == 404) {
+            $pendaftar_diterima['data'] = [];
+            $pendaftar_diterima = $pendaftar_diterima['data'];
+            return view('pendaftar-diterima.index_empty');
+        } 
+        
+        return view('pendaftar-diterima.index', compact('pendaftar_diterima'));
     }
 
     /**
@@ -26,7 +40,7 @@ class PendaftarDiterimaController extends Controller
      */
     public function create()
     {
-        return view('pendaftar.index');
+        //
     }
 
     /**

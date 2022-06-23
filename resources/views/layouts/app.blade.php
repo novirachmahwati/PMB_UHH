@@ -47,6 +47,12 @@
                     <span>Dashboard</span></a>
             </li>
 
+            <li class="nav-item @yield('info_active')">
+                <a class="nav-link" href="{{ route('info.index') }}">
+                    <i class="fas fa-fw fa-bullhorn"></i>
+                    <span>Informasi</span></a>
+            </li>
+            
             <li class="nav-item @yield('pendaftar_active')">
               <a class="nav-link" href="{{ route('pendaftar.index') }}">
                   <i class="fas fa-fw fa-users"></i>
@@ -262,7 +268,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{ route('logout') }}">Logout</a>
                 </div>
             </div>
         </div>

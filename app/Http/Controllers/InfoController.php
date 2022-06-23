@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class PendaftarController extends Controller
+class InfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,9 @@ class PendaftarController extends Controller
         $client = new Client([
             'base_uri' => config('app.api_url')
         ]);
-        $res = $client->request('GET', 'registrasi');
-        $pendaftar = json_decode($res->getBody()->getContents(), true);
-        return view('pendaftar.index', compact('pendaftar'));
+        $res = $client->request('GET', 'info');
+        $info = json_decode($res->getBody()->getContents(), true);
+        return view('info.index', compact('info'));
     }
 
     /**
@@ -31,7 +29,7 @@ class PendaftarController extends Controller
      */
     public function create()
     {
-        //
+        return view('info.create');
     }
 
     /**
@@ -42,7 +40,17 @@ class PendaftarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('POST', 'info', [
+            'json'  => [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+            ]
+        ]);
+        return redirect()->route('info.index')
+        ->with('message', 'Informasi baru berhasil ditambahkan!');
     }
 
     /**
@@ -56,11 +64,9 @@ class PendaftarController extends Controller
         $client = new Client([
             'base_uri' => config('app.api_url')
         ]);
-        $res = $client->request('GET', 'registrasi', [
-            'query' => ['id' => $id]
-        ]);
-        $pendaftar = json_decode($res->getBody()->getContents(), true);
-        return view('pendaftar.show', compact('pendaftar'));
+        $res = $client->request('GET', 'info');
+        $info = json_decode($res->getBody()->getContents(), true);
+        return view('info.show', compact('info'));
     }
 
     /**
@@ -74,11 +80,11 @@ class PendaftarController extends Controller
         $client = new Client([
             'base_uri' => config('app.api_url')
         ]);
-        $res = $client->request('GET', 'registrasi', [
-            'query' => ['id' => $id]
+        $res = $client->request('GET', 'info', [
+            'query' => ['id_info' => $id]
         ]);
-        $pendaftar = json_decode($res->getBody()->getContents(), true);
-        return view('pendaftar.edit', compact('pendaftar'));
+        $info = json_decode($res->getBody()->getContents(), true);
+        return view('info.edit', compact('info'));
     }
 
     /**
@@ -93,12 +99,15 @@ class PendaftarController extends Controller
         $client = new Client([
             'base_uri' => config('app.api_url')
         ]);
-        $res = $client->request('PUT', 'registrasi/verify', [
-            'query' => ['id_reg' => $id],
-            'json'  => ['status_daftar' => $request->status_daftar]
+        $res = $client->request('PUT', 'info', [
+            'query' => ['id_info' => $id],
+            'json'  => [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+            ]
         ]);
-        return redirect()->route('pendaftar.index')
-        ->with('message', 'Status Pendaftaran berhasil diubah!');
+        return redirect()->route('info.index')
+        ->with('message', 'Informasi berhasil diubah!');
     }
 
     /**
@@ -109,6 +118,13 @@ class PendaftarController extends Controller
      */
     public function destroy($id)
     {
-        // 
+        $client = new Client([
+            'base_uri' => config('app.api_url')
+        ]);
+        $res = $client->request('delete', 'info', [
+            'query' => ['id_info' => $id]
+        ]);
+        return redirect()->route('info.index')
+        ->with('message', 'Informasi berhasil dihapus!');
     }
 }
